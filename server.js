@@ -5,6 +5,9 @@ import { connect } from "./database/connection.js";
 import router from "./router/route.js";
 import path from "path";
 import { fileURLToPath } from "url";
+import { configDotenv } from "dotenv";
+
+configDotenv();
 
 const app = express();
 
@@ -12,9 +15,9 @@ app.use(express.json());
 app.use(cors());
 app.use(morgan("tiny"));
 app.disable("x-powerd-by");
-app.use(express.urlencoded({extended: true})); 
+app.use(express.urlencoded({ extended: true }));
 
-const port = 8080;
+const port = process.env.PORT || 8080;
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
